@@ -26,28 +26,17 @@ body.modal-open{overflow:hidden}
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.60);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
 .backdrop.is-open{display:flex}
 .modal{position:relative;width:min(920px,calc(100vw - 40px));max-height:86vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 28px 90px rgba(0,0,0,.3);overscroll-behavior:contain}
-.modal-inner{min-height:520px;padding:72px 50px 60px;line-height:1.35}
-.modal-title{font-size:32px;line-height:1.08;margin:0}
+.modal-inner{line-height:0;padding:0}
+.case-image{display:block;width:100%;height:auto}
+.modal-title{font-size:32px;line-height:1.08;margin:0 0 18px}
 .modal-note{font-size:16px;line-height:1.5;color:#666;margin:0;max-width:520px}
-.project-case{display:none}
-.project-case.is-active{display:block}
-.case-kicker{font-size:13px;line-height:1.2;letter-spacing:.08em;text-transform:uppercase;color:#777;margin:0 0 18px}
-.case-lead{font-size:17px;line-height:1.5;color:#555;max-width:690px;margin:18px 0 42px}
-.mail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.mail-card{background:#f7f7f7;border-radius:18px;min-height:280px;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
-.mail-card.wide{grid-column:1/-1;min-height:230px}
-.mail-card-label{font-size:14px;line-height:1.35;color:#777}
-.mail-card-title{font-size:26px;line-height:1.08;margin:12px 0 0}
-.mail-card-meta{font-size:14px;line-height:1.45;color:#777;margin-top:26px}
-.case-end{margin-top:42px;padding-top:24px;border-top:1px solid #e7e7e7;color:#777;font-size:14px;line-height:1.5}
+.placeholder-inner{padding:84px 50px 60px;line-height:1.35}
 .close{position:sticky;top:14px;float:right;margin:14px 14px -58px 0;width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.98);box-shadow:0 3px 18px rgba(0,0,0,.18);cursor:pointer;z-index:3;font-size:28px;line-height:40px;font-weight:300}
 @media(max-width:700px){
   .backdrop{padding:8px}
   .modal{width:calc(100vw - 16px);max-height:92vh;border-radius:14px}
-  .modal-inner{min-height:65vh;padding:66px 20px 36px}
   .modal-title{font-size:26px}
-  .mail-grid{grid-template-columns:1fr}
-  .mail-card.wide{grid-column:auto}
+  .placeholder-inner{padding:72px 24px 40px}
   .close{top:10px;margin:10px 10px -54px 0}
 }
 </style>
@@ -68,53 +57,10 @@ body.modal-open{overflow:hidden}
 <div class="backdrop" id="backdrop" aria-hidden="true">
   <section class="modal" role="dialog" aria-modal="true">
     <button class="close" id="close" aria-label="Закрыть">×</button>
-    <div class="modal-inner">
-      <div class="project-case" id="mailingsCase">
-        <p class="case-kicker">CRM / EMAIL</p>
-        <h1 class="modal-title">Рассылки</h1>
-        <p class="case-lead">Примеры email-рассылок и CRM-материалов restore:. Здесь собираем кейс прямо в веб-формате, чтобы работы можно было смотреть без перехода в отдельный файл.</p>
-        <div class="mail-grid">
-          <article class="mail-card wide">
-            <div>
-              <div class="mail-card-label">restore: / email</div>
-              <h2 class="mail-card-title">Для каждого своё идеальное решение</h2>
-            </div>
-            <div class="mail-card-meta">Hero-блок рассылки • продуктовая коммуникация • адаптация под email</div>
-          </article>
-          <article class="mail-card">
-            <div>
-              <div class="mail-card-label">Подборка товаров</div>
-              <h2 class="mail-card-title">Аксессуары и чехлы</h2>
-            </div>
-            <div class="mail-card-meta">Карточки товаров • композиция • типографика</div>
-          </article>
-          <article class="mail-card">
-            <div>
-              <div class="mail-card-label">Подборка товаров</div>
-              <h2 class="mail-card-title">Кабели и аккумуляторы</h2>
-            </div>
-            <div class="mail-card-meta">CRM-визуал • продуктовая сетка</div>
-          </article>
-          <article class="mail-card">
-            <div>
-              <div class="mail-card-label">Подборка товаров</div>
-              <h2 class="mail-card-title">SSD и хранение данных</h2>
-            </div>
-            <div class="mail-card-meta">Продуктовые карточки • email</div>
-          </article>
-          <article class="mail-card">
-            <div>
-              <div class="mail-card-label">Подборка товаров</div>
-              <h2 class="mail-card-title">Новинки и гаджеты</h2>
-            </div>
-            <div class="mail-card-meta">Визуальная адаптация • CRM</div>
-          </article>
-        </div>
-        <div class="case-end">Следующим проходом сюда подставим исходные изображения из Figma и доведём композицию до полного совпадения с макетом.</div>
-      </div>
-      <div class="project-case" id="placeholderCase">
+    <div class="modal-inner" id="modalContent">
+      <div class="placeholder-inner">
         <h1 class="modal-title" id="modalTitle"></h1>
-        <p class="modal-note">Этот раздел будет следующим в очереди на верстку.</p>
+        <p class="modal-note">Этот раздел пока не подключён.</p>
       </div>
     </div>
   </section>
@@ -123,13 +69,14 @@ body.modal-open{overflow:hidden}
 const backdrop=document.getElementById('backdrop');
 const closeBtn=document.getElementById('close');
 const title=document.getElementById('modalTitle');
-const mailingsCase=document.getElementById('mailingsCase');
-const placeholderCase=document.getElementById('placeholderCase');
+const modalContent=document.getElementById('modalContent');
 function openModal(name){
-  const isMailings=name==='Рассылки';
-  mailingsCase.classList.toggle('is-active',isMailings);
-  placeholderCase.classList.toggle('is-active',!isMailings);
-  if(!isMailings) title.textContent=name;
+  if(name==='Рассылки'){
+    modalContent.innerHTML='<img class="case-image" src="assets/mailings.png" alt="Рассылки — портфолио Анны Белиховой">';
+  }else{
+    modalContent.innerHTML='<div class="placeholder-inner"><h1 class="modal-title" id="modalTitleDynamic"></h1><p class="modal-note">Этот раздел пока не подключён.</p></div>';
+    document.getElementById('modalTitleDynamic').textContent=name;
+  }
   if(typeof stopSmoothScroll === 'function') stopSmoothScroll();
   backdrop.classList.add('is-open');
   backdrop.setAttribute('aria-hidden','false');
