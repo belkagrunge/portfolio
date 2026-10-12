@@ -6,18 +6,21 @@
 <title>Анна Белихова — портфолио</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;background:#f2f2f0;color:#111;font-family:Arial,Helvetica,sans-serif}
+html,body{margin:0;background:#151515;color:#111;font-family:Arial,Helvetica,sans-serif}
 body.modal-open{overflow:hidden}
-.page{width:min(1100px,100%);margin:0 auto;position:relative;line-height:0;background:#f2f2f0}
+.page{width:min(1100px,100%);margin:0 auto;position:relative;line-height:0;background:#151515}
 .resume{display:block;width:100%;height:auto}
 .hotspot{position:absolute;border:0;background:transparent;cursor:pointer;border-radius:999px;padding:0;z-index:2}
 .hotspot:focus-visible{outline:3px solid #111;outline-offset:2px}
-.h1{left:9.97%;top:57.02%;width:12.29%;height:.94%}
-.h2{left:24.34%;top:57.02%;width:37.29%;height:.94%}
-.h3{left:63.72%;top:57.02%;width:26.39%;height:.94%}
-.h4{left:11.98%;top:58.36%;width:35.63%;height:.86%}
-.h5{left:49.69%;top:58.36%;width:18.54%;height:.86%}
-.h6{left:70.31%;top:58.36%;width:17.78%;height:.86%}
+.h1{left:9.97%;top:75.35%;width:12.29%;height:.94%}
+.h2{left:24.34%;top:75.35%;width:37.29%;height:.94%}
+.h3{left:63.72%;top:75.35%;width:26.39%;height:.94%}
+.h4{left:11.98%;top:76.70%;width:35.63%;height:.86%}
+.h5{left:49.69%;top:76.70%;width:18.54%;height:.86%}
+.h6{left:70.31%;top:76.70%;width:17.78%;height:.86%}
+.contact-link{position:absolute;display:block;z-index:3;background:transparent}
+.telegram-link{left:51.11%;top:57.97%;width:26.86%;height:1.06%}
+.instagram-link{left:51.11%;top:60.60%;width:26.39%;height:.44%}
 .backdrop{position:fixed;inset:0;background:rgba(12,12,12,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
 .backdrop.is-open{display:flex}
 .modal{position:relative;width:min(760px,calc(100vw - 40px));max-height:78vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 28px 90px rgba(0,0,0,.3);overscroll-behavior:contain}
@@ -43,6 +46,8 @@ body.modal-open{overflow:hidden}
   <button class="hotspot h4" data-project="Печатные макеты и их реализация" aria-label="Печатные макеты и их реализация"></button>
   <button class="hotspot h5" data-project="Работа с сайтом" aria-label="Работа с сайтом"></button>
   <button class="hotspot h6" data-project="Бонус макеты" aria-label="Бонус макеты"></button>
+  <a class="contact-link telegram-link" href="https://t.me/belkagrunge" target="_blank" rel="noopener noreferrer" aria-label="Telegram"></a>
+  <a class="contact-link instagram-link" href="https://instagram.com/belkagrunge" target="_blank" rel="noopener noreferrer" aria-label="Instagram"></a>
 </main>
 <div class="backdrop" id="backdrop" aria-hidden="true">
   <section class="modal" role="dialog" aria-modal="true">
