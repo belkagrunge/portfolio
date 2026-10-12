@@ -72,7 +72,7 @@ const title=document.getElementById('modalTitle');
 const modalContent=document.getElementById('modalContent');
 function openModal(name){
   if(name==='Рассылки'){
-    modalContent.innerHTML='<img class="case-image" src="assets/mailings.png" alt="Рассылки — портфолио Анны Белиховой">';
+    modalContent.innerHTML='<img class="case-image" src="assets/mailings.png" alt="Рассылки — портфолио Анны Белиховой" onerror="this.remove();document.getElementById(\'modalContent\').innerHTML=\'<div class=&quot;placeholder-inner&quot;><p class=&quot;modal-note&quot;>Имидж раздела пока не загружен.</p></div>\'">';
   }else{
     modalContent.innerHTML='<div class="placeholder-inner"><h1 class="modal-title" id="modalTitleDynamic"></h1><p class="modal-note">Этот раздел пока не подключён.</p></div>';
     document.getElementById('modalTitleDynamic').textContent=name;
