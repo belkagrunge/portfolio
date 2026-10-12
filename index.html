@@ -23,21 +23,23 @@ body.modal-open{overflow:hidden}
 .telegram-link{left:51.11%;top:57.97%;width:26.86%;height:1.06%}
 .behance-link{left:4.0972%;top:80.8568%;width:35.1389%;height:.8899%}
 .instagram-link{left:51.11%;top:60.60%;width:26.39%;height:.44%}
-.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.60);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.76);display:none;align-items:center;justify-content:center;padding:10px;z-index:50}
 .backdrop.is-open{display:flex}
-.modal{position:relative;width:min(920px,calc(100vw - 40px));max-height:86vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 28px 90px rgba(0,0,0,.3);overscroll-behavior:contain}
+.modal{position:relative;width:min(1440px,calc(100vw - 20px));max-height:96vh;overflow:auto;background:#292929;border-radius:0;box-shadow:0 28px 90px rgba(0,0,0,.45);overscroll-behavior:contain;scrollbar-color:#777 #292929}
 .modal-inner{line-height:0;padding:0}
-.case-image{display:block;width:100%;height:auto}
+.case-image{display:block;width:100%;height:auto;background:#292929}
+.case-loading{min-height:65vh;display:grid;place-items:center;background:#292929;color:#fff;font-size:15px;line-height:1.4;letter-spacing:.02em}
 .modal-title{font-size:32px;line-height:1.08;margin:0 0 18px}
 .modal-note{font-size:16px;line-height:1.5;color:#666;margin:0;max-width:520px}
 .placeholder-inner{padding:84px 50px 60px;line-height:1.35}
-.close{position:sticky;top:14px;float:right;margin:14px 14px -58px 0;width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.98);box-shadow:0 3px 18px rgba(0,0,0,.18);cursor:pointer;z-index:3;font-size:28px;line-height:40px;font-weight:300}
+.close{position:sticky;top:10px;float:right;margin:10px 10px -64px 0;width:54px;height:54px;border:0;border-radius:50%;background:rgba(41,41,41,.72);color:#fff;box-shadow:none;cursor:pointer;z-index:3;font-size:38px;line-height:48px;font-weight:200;backdrop-filter:blur(8px)}
+.close:focus-visible{outline:2px solid #9cef35;outline-offset:-4px}
 @media(max-width:700px){
-  .backdrop{padding:8px}
-  .modal{width:calc(100vw - 16px);max-height:92vh;border-radius:14px}
+  .backdrop{padding:0}
+  .modal{width:100vw;max-height:100vh}
   .modal-title{font-size:26px}
   .placeholder-inner{padding:72px 24px 40px}
-  .close{top:10px;margin:10px 10px -54px 0}
+  .close{top:6px;margin:6px 6px -58px 0;width:48px;height:48px;font-size:34px}
 }
 </style>
 </head>
@@ -68,25 +70,41 @@ body.modal-open{overflow:hidden}
 <script>
 const backdrop=document.getElementById('backdrop');
 const closeBtn=document.getElementById('close');
-const title=document.getElementById('modalTitle');
 const modalContent=document.getElementById('modalContent');
+const caseAssets={
+  'Рассылки':{src:'assets/cases/mailings.jpg',alt:'Рассылки — портфолио Анны Белиховой'},
+  'Навигация в ТЦ и наружная реклама':{src:'assets/cases/navigation.jpg',alt:'Навигация в ТЦ и наружная реклама — портфолио Анны Белиховой'},
+  'Генерация изображений':{src:'assets/cases/generation.jpg',alt:'Генерация изображений — портфолио Анны Белиховой'},
+  'Печатные макеты и их реализация':{src:'assets/cases/print.jpg',alt:'Печатные макеты и их реализация — портфолио Анны Белиховой'},
+  'Работа с сайтом':{src:'assets/cases/web.jpg',alt:'Работа с сайтом — портфолио Анны Белиховой'},
+  'Бонус макеты':{src:'assets/cases/bonus.jpg',alt:'Бонусные макеты — портфолио Анны Белиховой'}
+};
 function openModal(name){
-  if(name==='Рассылки'){
-    modalContent.innerHTML='<img class="case-image" src="assets/mailings.png" alt="Рассылки — портфолио Анны Белиховой" onerror="this.remove();document.getElementById(\'modalContent\').innerHTML=\'<div class=&quot;placeholder-inner&quot;><p class=&quot;modal-note&quot;>Имидж раздела пока не загружен.</p></div>\'">';
-  }else{
-    modalContent.innerHTML='<div class="placeholder-inner"><h1 class="modal-title" id="modalTitleDynamic"></h1><p class="modal-note">Этот раздел пока не подключён.</p></div>';
-    document.getElementById('modalTitleDynamic').textContent=name;
-  }
+  const project=caseAssets[name];
+  modalContent.innerHTML='<div class="case-loading" role="status">Загружаю кейс…</div>';
   if(typeof stopSmoothScroll === 'function') stopSmoothScroll();
   backdrop.classList.add('is-open');
   backdrop.setAttribute('aria-hidden','false');
   document.body.classList.add('modal-open');
+  const image=new Image();
+  image.className='case-image';
+  image.alt=project.alt;
+  image.decoding='async';
+  image.onload=()=>{
+    modalContent.replaceChildren(image);
+    document.querySelector('.modal').scrollTop=0;
+  };
+  image.onerror=()=>{
+    modalContent.innerHTML='<div class="placeholder-inner"><h1 class="modal-title">'+name+'</h1><p class="modal-note">Не удалось загрузить кейс. Обновите страницу и попробуйте ещё раз.</p></div>';
+  };
+  image.src=project.src;
   closeBtn.focus();
 }
 function closeModal(){
   backdrop.classList.remove('is-open');
   backdrop.setAttribute('aria-hidden','true');
   document.body.classList.remove('modal-open');
+  modalContent.replaceChildren();
   requestAnimationFrame(()=>{
     if(typeof syncSmoothScroll === 'function') syncSmoothScroll();
   });
