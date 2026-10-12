@@ -6,7 +6,7 @@
 <title>Анна Белихова — портфолио</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;background:#151515;color:#111;font-family:Arial,Helvetica,sans-serif}
+html{scroll-behavior:smooth}html,body{margin:0;background:#151515;color:#111;font-family:Arial,Helvetica,sans-serif;overscroll-behavior-y:none}
 body.modal-open{overflow:hidden}
 .page{width:min(1100px,100%);margin:0 auto;position:relative;line-height:0;background:#151515}
 .resume{display:block;width:100%;height:auto}
@@ -78,6 +78,44 @@ document.querySelectorAll('[data-project]').forEach(b=>b.addEventListener('click
 closeBtn.addEventListener('click',closeModal);
 backdrop.addEventListener('click',e=>{if(e.target===backdrop) closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal()});
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch = window.matchMedia('(pointer: coarse)').matches;
+if(!reduceMotion && !isTouch){
+  let current = window.scrollY;
+  let target = window.scrollY;
+  let raf = null;
+
+  const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+  function tick(){
+    current += (target - current) * 0.115;
+    if(Math.abs(target - current) < 0.35){
+      current = target;
+      window.scrollTo(0, current);
+      raf = null;
+      return;
+    }
+    window.scrollTo(0, current);
+    raf = requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('wheel', e => {
+    if(document.body.classList.contains('modal-open')) return;
+    if(e.ctrlKey) return;
+    e.preventDefault();
+    current = window.scrollY;
+    target = Math.min(maxScroll(), Math.max(0, target + e.deltaY * 0.9));
+    if(!raf) raf = requestAnimationFrame(tick);
+  }, {passive:false});
+
+  window.addEventListener('scroll', () => {
+    if(!raf){
+      current = window.scrollY;
+      target = window.scrollY;
+    }
+  }, {passive:true});
+}
 </script>
 </body>
 </html>
