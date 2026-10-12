@@ -6,7 +6,7 @@
 <title>Анна Белихова — портфолио</title>
 <style>
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}html,body{margin:0;background:#151515;color:#111;font-family:Arial,Helvetica,sans-serif;overscroll-behavior-y:none}
+html{scroll-behavior:smooth;scrollbar-gutter:stable}html,body{margin:0;background:#151515;color:#111;font-family:Arial,Helvetica,sans-serif;overscroll-behavior-y:none}
 body.modal-open{overflow:hidden}
 .page{width:min(1100px,100%);margin:0 auto;position:relative;line-height:0;background:#151515}
 .resume{display:block;width:100%;height:auto}
@@ -20,8 +20,9 @@ body.modal-open{overflow:hidden}
 .h6{left:70.31%;top:76.70%;width:17.78%;height:.86%}
 .contact-link{position:absolute;display:block;z-index:3;background:transparent}
 .telegram-link{left:51.11%;top:57.97%;width:26.86%;height:1.06%}
+.behance-link{left:51.11%;top:59.28%;width:26.86%;height:.72%}
 .instagram-link{left:51.11%;top:60.60%;width:26.39%;height:.44%}
-.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.40);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.60);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
 .backdrop.is-open{display:flex}
 .modal{position:relative;width:min(760px,calc(100vw - 40px));max-height:78vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 28px 90px rgba(0,0,0,.3);overscroll-behavior:contain}
 .modal-inner{min-height:520px;padding:84px 50px 60px;line-height:1.35}
@@ -47,6 +48,7 @@ body.modal-open{overflow:hidden}
   <button class="hotspot h5" data-project="Работа с сайтом" aria-label="Работа с сайтом"></button>
   <button class="hotspot h6" data-project="Бонус макеты" aria-label="Бонус макеты"></button>
   <a class="contact-link telegram-link" href="https://t.me/belkagrunge" target="_blank" rel="noopener noreferrer" aria-label="Telegram"></a>
+  <a class="contact-link behance-link" href="https://www.behance.net/belkagrunge" target="_blank" rel="noopener noreferrer" aria-label="Behance"></a>
   <a class="contact-link instagram-link" href="https://instagram.com/belkagrunge" target="_blank" rel="noopener noreferrer" aria-label="Instagram"></a>
 </main>
 <div class="backdrop" id="backdrop" aria-hidden="true">
@@ -64,6 +66,7 @@ const closeBtn=document.getElementById('close');
 const title=document.getElementById('modalTitle');
 function openModal(name){
   title.textContent=name;
+  if(typeof stopSmoothScroll === 'function') stopSmoothScroll();
   backdrop.classList.add('is-open');
   backdrop.setAttribute('aria-hidden','false');
   document.body.classList.add('modal-open');
@@ -73,6 +76,9 @@ function closeModal(){
   backdrop.classList.remove('is-open');
   backdrop.setAttribute('aria-hidden','true');
   document.body.classList.remove('modal-open');
+  requestAnimationFrame(()=>{
+    if(typeof syncSmoothScroll === 'function') syncSmoothScroll();
+  });
 }
 document.querySelectorAll('[data-project]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.project)));
 closeBtn.addEventListener('click',closeModal);
@@ -85,6 +91,20 @@ if(!reduceMotion && !isTouch){
   let current = window.scrollY;
   let target = window.scrollY;
   let raf = null;
+
+  window.stopSmoothScroll = function(){
+    if(raf){
+      cancelAnimationFrame(raf);
+      raf = null;
+    }
+    current = window.scrollY;
+    target = window.scrollY;
+  };
+
+  window.syncSmoothScroll = function(){
+    current = window.scrollY;
+    target = window.scrollY;
+  };
 
   const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
 
