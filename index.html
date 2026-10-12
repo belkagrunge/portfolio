@@ -1,89 +1,78 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Анна Белихова — коммуникационный дизайнер</title>
-  <style>
-    *{box-sizing:border-box}
-    html,body{margin:0;background:#f4f4f2;color:#111;font-family:Arial,Helvetica,sans-serif}
-    body.modal-open{overflow:hidden}
-    .page{width:min(1440px,100%);margin:0 auto;position:relative;line-height:0;background:#fff}
-    .resume{display:block;width:100%;height:auto}
-    .hotspot{position:absolute;display:block;border:0;background:transparent;cursor:pointer;border-radius:999px;padding:0;z-index:2}
-    .hotspot:focus-visible{outline:3px solid #111;outline-offset:2px}
-    .h1{left:9.9653%;top:57.0166%;width:12.2917%;height:.9313%}
-    .h2{left:24.3403%;top:57.0166%;width:37.2917%;height:.9313%}
-    .h3{left:63.7153%;top:57.0166%;width:26.3889%;height:.9313%}
-    .h4{left:11.9792%;top:58.3610%;width:35.6250%;height:.8485%}
-    .h5{left:49.6875%;top:58.3610%;width:18.5417%;height:.8485%}
-    .h6{left:70.3125%;top:58.3610%;width:17.7778%;height:.8485%}
-
-    .backdrop{position:fixed;inset:0;background:rgba(15,15,15,.58);display:none;align-items:center;justify-content:center;padding:28px;z-index:50}
-    .backdrop.is-open{display:flex}
-    .modal{position:relative;width:min(900px,calc(100vw - 56px));max-height:82vh;overflow:auto;background:#fff;border-radius:20px;box-shadow:0 28px 90px rgba(0,0,0,.3);overscroll-behavior:contain}
-    .modal img{display:block;width:100%;height:auto}
-    .close{position:sticky;top:16px;float:right;margin:16px 16px -60px 0;width:44px;height:44px;border:0;border-radius:999px;background:rgba(255,255,255,.96);box-shadow:0 3px 16px rgba(0,0,0,.18);cursor:pointer;z-index:4;font-size:28px;line-height:42px;font-weight:300}
-    .close:hover{transform:scale(1.03)}
-    .loading{min-height:260px;display:grid;place-items:center;font-size:14px;line-height:1.4;color:#666}
-    @media(max-width:700px){
-      .backdrop{padding:10px}
-      .modal{width:calc(100vw - 20px);max-height:90vh;border-radius:14px}
-      .close{top:10px;margin:10px 10px -54px 0;width:42px;height:42px}
-      .hotspot{min-height:30px}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Анна Белихова — портфолио</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:#efefed;color:#111;font-family:Arial,Helvetica,sans-serif}
+body.modal-open{overflow:hidden}
+.page{width:min(1100px,100%);margin:0 auto;position:relative;line-height:0;background:#fff}
+.resume{display:block;width:100%;height:auto}
+.hotspot{position:absolute;border:0;background:transparent;cursor:pointer;border-radius:999px;padding:0;z-index:2}
+.hotspot:focus-visible{outline:3px solid #111;outline-offset:2px}
+.h1{left:9.97%;top:57.02%;width:12.29%;height:.94%}
+.h2{left:24.34%;top:57.02%;width:37.29%;height:.94%}
+.h3{left:63.72%;top:57.02%;width:26.39%;height:.94%}
+.h4{left:11.98%;top:58.36%;width:35.63%;height:.86%}
+.h5{left:49.69%;top:58.36%;width:18.54%;height:.86%}
+.h6{left:70.31%;top:58.36%;width:17.78%;height:.86%}
+.backdrop{position:fixed;inset:0;background:rgba(12,12,12,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.backdrop.is-open{display:flex}
+.modal{position:relative;width:min(760px,calc(100vw - 40px));max-height:78vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 28px 90px rgba(0,0,0,.3);overscroll-behavior:contain}
+.modal-inner{min-height:520px;padding:84px 50px 60px;line-height:1.35}
+.modal-title{font-size:32px;line-height:1.08;margin:0 0 18px}
+.modal-note{font-size:16px;line-height:1.5;color:#666;margin:0;max-width:520px}
+.close{position:sticky;top:14px;float:right;margin:14px 14px -58px 0;width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.98);box-shadow:0 3px 18px rgba(0,0,0,.18);cursor:pointer;z-index:3;font-size:28px;line-height:40px;font-weight:300}
+@media(max-width:700px){
+  .backdrop{padding:8px}
+  .modal{width:calc(100vw - 16px);max-height:90vh;border-radius:14px}
+  .modal-inner{min-height:65vh;padding:72px 24px 40px}
+  .modal-title{font-size:26px}
+  .close{top:10px;margin:10px 10px -54px 0}
+}
+</style>
 </head>
 <body>
-  <main class="page">
-    <img class="resume" src="assets/resume.png" alt="Резюме Анны Белиховой" />
-    <button class="hotspot h1" data-project="mailings" aria-label="Открыть: рассылки"></button>
-    <button class="hotspot h2" data-project="navigation" aria-label="Открыть: навигация в ТЦ и наружная реклама"></button>
-    <button class="hotspot h3" data-project="generation" aria-label="Открыть: генерация изображений"></button>
-    <button class="hotspot h4" data-project="print" aria-label="Открыть: печатные макеты и их реализация"></button>
-    <button class="hotspot h5" data-project="website" aria-label="Открыть: работа с сайтом"></button>
-    <button class="hotspot h6" data-project="bonus" aria-label="Открыть: бонус макеты"></button>
-  </main>
-
-  <div class="backdrop" id="backdrop" aria-hidden="true">
-    <section class="modal" role="dialog" aria-modal="true" aria-label="Просмотр работ">
-      <button class="close" id="close" aria-label="Закрыть">×</button>
-      <div class="loading" id="loading">Загрузка…</div>
-      <img id="projectImage" alt="" hidden />
-    </section>
-  </div>
-
-  <script>
-    const projects = {
-      mailings: ["assets/mailings.png","Рассылки"],
-      navigation: ["assets/navigation.png","Навигация в ТЦ и наружная реклама"],
-      generation: ["assets/generation.png","Генерация изображений"],
-      print: ["assets/print.png","Печатные макеты и их реализация"],
-      website: ["assets/website.png","Работа с сайтом"],
-      bonus: ["assets/bonus.png","Бонус макеты"]
-    };
-    const backdrop=document.getElementById("backdrop");
-    const modal=backdrop.querySelector(".modal");
-    const close=document.getElementById("close");
-    const img=document.getElementById("projectImage");
-    const loading=document.getElementById("loading");
-
-    function openProject(key){
-      const item=projects[key]; if(!item) return;
-      loading.hidden=false; img.hidden=true; img.alt=item[1]; img.src=item[0];
-      backdrop.classList.add("is-open"); backdrop.setAttribute("aria-hidden","false");
-      document.body.classList.add("modal-open");
-      modal.scrollTop=0; close.focus();
-    }
-    function closeModal(){
-      backdrop.classList.remove("is-open"); backdrop.setAttribute("aria-hidden","true");
-      document.body.classList.remove("modal-open"); img.removeAttribute("src");
-    }
-    img.addEventListener("load",()=>{loading.hidden=true;img.hidden=false});
-    document.querySelectorAll("[data-project]").forEach(b=>b.addEventListener("click",()=>openProject(b.dataset.project)));
-    close.addEventListener("click",closeModal);
-    backdrop.addEventListener("click",e=>{if(e.target===backdrop) closeModal()});
-    document.addEventListener("keydown",e=>{if(e.key==="Escape"&&backdrop.classList.contains("is-open")) closeModal()});
-  </script>
+<main class="page">
+  <img class="resume" src="assets/resume.png" alt="Резюме Анны Белиховой">
+  <button class="hotspot h1" data-project="Рассылки" aria-label="Рассылки"></button>
+  <button class="hotspot h2" data-project="Навигация в ТЦ и наружная реклама" aria-label="Навигация в ТЦ и наружная реклама"></button>
+  <button class="hotspot h3" data-project="Генерация изображений" aria-label="Генерация изображений"></button>
+  <button class="hotspot h4" data-project="Печатные макеты и их реализация" aria-label="Печатные макеты и их реализация"></button>
+  <button class="hotspot h5" data-project="Работа с сайтом" aria-label="Работа с сайтом"></button>
+  <button class="hotspot h6" data-project="Бонус макеты" aria-label="Бонус макеты"></button>
+</main>
+<div class="backdrop" id="backdrop" aria-hidden="true">
+  <section class="modal" role="dialog" aria-modal="true">
+    <button class="close" id="close" aria-label="Закрыть">×</button>
+    <div class="modal-inner">
+      <h1 class="modal-title" id="modalTitle"></h1>
+      <p class="modal-note">Здесь будет макет раздела из Figma. Сейчас это первый веб-прототип, чтобы проверить размер окна, скролл и закрытие. Следующим шагом подставим сами работы без изменения твоего дизайна.</p>
+    </div>
+  </section>
+</div>
+<script>
+const backdrop=document.getElementById('backdrop');
+const closeBtn=document.getElementById('close');
+const title=document.getElementById('modalTitle');
+function openModal(name){
+  title.textContent=name;
+  backdrop.classList.add('is-open');
+  backdrop.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  closeBtn.focus();
+}
+function closeModal(){
+  backdrop.classList.remove('is-open');
+  backdrop.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+}
+document.querySelectorAll('[data-project]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.project)));
+closeBtn.addEventListener('click',closeModal);
+backdrop.addEventListener('click',e=>{if(e.target===backdrop) closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal()});
+</script>
 </body>
 </html>
