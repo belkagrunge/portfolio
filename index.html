@@ -105,7 +105,7 @@ if(!reduceMotion && !isTouch){
     if(e.ctrlKey) return;
     e.preventDefault();
     current = window.scrollY;
-    target = Math.min(maxScroll(), Math.max(0, target + e.deltaY * 0.9));
+    target = Math.min(maxScroll(), Math.max(0, target + e.deltaY * 0.99));
     if(!raf) raf = requestAnimationFrame(tick);
   }, {passive:false});
 
