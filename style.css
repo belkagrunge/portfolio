@@ -30,3 +30,7 @@ a.category-pill[data-category]:after{content:none}
 
 /* Center the close icon and keep a single thin circle, including on keyboard focus. */
 #close{display:grid;place-items:center;padding:0;line-height:1;appearance:none}#close svg{display:block;flex:none}#close:focus-visible{outline:none;box-shadow:none;background:#394a2b}
+
+/* Keep the scaled desktop typography stable in iOS Safari. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+[data-node-id="631:5959"]>p{white-space:nowrap!important}
