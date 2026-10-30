@@ -1,0 +1,41 @@
+*{box-sizing:border-box}html{background:#151515;color:white}body{margin:0;font-family:"Graphik LC",sans-serif}p,h1,h2{margin:0}a{color:inherit;text-decoration:inherit}img{display:block;max-width:100%}button{font:inherit}a:focus-visible,button:focus-visible{outline:3px solid #a8ff5b;outline-offset:5px}#main-canvas{width:1440px;height:4832px;position:relative;margin:auto}#main-canvas>div{height:4832px!important}a[data-category]{position:relative;z-index:2}a[data-category]:after{content:"";position:absolute;inset:-14px -20px;border-radius:100px}a[data-category]:hover{opacity:.65}#modal{border:0;padding:0;margin:0;max-width:none;max-height:none;width:100%;height:100dvh;background:rgba(0,0,0,.65);color:white;overflow:auto;overscroll-behavior:contain}#modal::backdrop{background:rgba(0,0,0,.7)}#modal-shell{position:relative;width:min(1440px,calc(100% - 64px));margin:32px auto;background:#292929;min-height:80vh}#modal-content{width:1440px;position:relative}#close{position:fixed;z-index:10;right:18px;top:18px;width:52px;height:52px;border:1px solid #666;background:#292929;border-radius:50%;color:white;font-size:34px;font-weight:200;cursor:pointer}#close:hover{color:#a8ff5b;border-color:#a8ff5b}.draft-note{position:relative;z-index:5;padding:28px 70px;font-size:22px;line-height:1.4;border-bottom:1px solid #555;background:#292929}.draft-note a{text-decoration:underline;color:#a8ff5b;margin-left:20px}.loading{padding:100px;font-size:24px}@media(max-width:700px){#modal-shell{width:100%;margin:0}#close{width:40px;height:40px;right:10px;top:10px}}@font-face{font-family:"Graphik LC";src:url("fonts/Graphik-Medium-Cy.otf");font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:"Graphik LC";src:url("fonts/Graphik-LightItalic-Cy.otf");font-weight:300;font-style:italic;font-display:swap}@font-face{font-family:"Graphik LC";src:url("fonts/Graphik-Regular-Cy.otf");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:"Graphik LC";src:url("fonts/Graphik-Bold-Cy.otf");font-weight:700;font-style:normal;font-display:swap}@font-face{font-family:"Graphik LC";src:url("fonts/Graphik-Semibold-Cy.otf");font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:"Graphik LC";src:url("fonts/Graphik-Extralight-Cy.otf");font-weight:200;font-style:normal;font-display:swap}@font-face{font-family:"Graphik LC";src:url("fonts/Graphik-RegularItalic-Cy.otf");font-weight:400;font-style:italic;font-display:swap}@font-face{font-family:"Graphik LCG";src:url("fonts/Graphik-Medium-Cy.otf");font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:"IBM Plex Mono";src:url("fonts/IBMPlexMono-Medium.ttf");font-weight:500;font-style:normal;font-display:swap}
+#main-canvas{overflow:clip}#modal-content{overflow:clip}
+
+#modal,#modal-content{overflow-anchor:none}
+
+[data-node-id="631:5670"]{font-size:30px!important;line-height:1!important}
+
+/* Keep hand-drawn markers attached to their text and preserve Figma geometry. */
+[data-node-id="631:5674"]{position:absolute!important;left:60px;top:2223px;width:1321px!important;height:313px;gap:40px!important}
+[data-node-id="631:5675"]{height:17px}
+.work-list{display:flex;flex-direction:column;gap:15px;width:657px;height:165px;list-style:none;padding:0;margin:0;font-family:"Graphik LC",sans-serif;font-weight:500;font-size:30px;letter-spacing:-1.2px;color:#fff}
+.work-list li{display:grid;grid-template-columns:18px 1fr;align-items:center;height:21px;flex:none}
+.work-list li>span:last-child{display:block;line-height:30px;text-box-trim:trim-both;text-box-edge:cap alphabetic;white-space:nowrap}
+.work-marker{display:block;position:relative;flex:none;margin-left:7.8px}
+[data-node-id="631:5680"]{display:grid!important;grid-template-columns:18px 1083px;align-items:start!important;padding-left:0!important}
+[data-node-id="631:5680"]>.work-marker{margin-top:8px}
+[data-node-id="631:5682"]{position:absolute!important;left:60px;top:2696px;gap:42px!important;height:165px}
+[data-node-id="631:5683"]{height:17px}
+[data-node-id="631:5687"]{height:45px}
+[data-node-id="631:5697"]{height:41px}
+.category-pill{display:flex;align-items:center;justify-content:center;flex:none;border-radius:100px;background:#fafafa;color:#000;font-family:"Graphik LC",sans-serif;font-weight:500;font-size:30px;letter-spacing:-1.05px;white-space:nowrap;text-decoration:none}
+.category-pill>span{display:block;line-height:30px;text-box-trim:trim-both;text-box-edge:cap alphabetic;text-decoration:underline;text-underline-position:from-font;text-decoration-thickness:from-font}
+a.category-pill[data-category]:after{content:none}
+
+/* Each portfolio layout is one lazy-loaded JPEG; modal UI remains HTML. */
+.artwork-image{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:fill}
+
+/* One close control for every complete portfolio category. */
+#close{color:#a8ff5b;border-color:#a8ff5b}#close:hover{background:#323e2a;color:#a8ff5b;border-color:#a8ff5b}
+
+/* Center the close icon and keep a single thin circle, including on keyboard focus. */
+#close{display:grid;place-items:center;padding:0;line-height:1;appearance:none}#close svg{display:block;flex:none}#close:focus-visible{outline:none;box-shadow:none;background:#394a2b}
+
+/* Keep the scaled desktop typography stable in iOS Safari. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+[data-node-id="631:5959"]>p{white-space:nowrap!important}
+
+/* Transform the complete fixed design: avoid iOS CSS zoom text counter-scaling. */
+html,body{-webkit-text-size-adjust:none;text-size-adjust:none}
+body{overflow-x:hidden}
+#modal-content{position:absolute;left:0;top:0;zoom:1!important;transform-origin:top left;transform:scale(var(--modal-scale,1))}
